@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>REDLINE PARTS | Peças Automotivas</title>
+
+    <meta
+        name="description"
+        content="REDLINE PARTS - Peças automotivas de alta performance para seu carro."
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           VARIÁVEIS
+        ========================= */
+
+        :root {
+            --red: #e50914;
+            --red-dark: #a80009;
+            --black: #080808;
+            --black-2: #111111;
+            --black-3: #181818;
+            --white: #ffffff;
+            --gray: #a8a8a8;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        /* =========================
+           SCROLLBAR
+        ========================= */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--red);
+            border-radius: 20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 78px;
+            background: rgba(5,5,5,0.94);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        .cart-button {
+            position: relative;
+            border: 1px solid rgba(229,9,20,0.5);
+            background: #111;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .cart-button:hover {
+            background: var(--red);
+            transform: scale(1.08);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -3px;
+            background: var(--red);
+            color: white;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            padding: 150px 7% 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 80% 40%, rgba(229,9,20,0.17), transparent 32%),
+                linear-gradient(120deg, #050505 50%, #100000);
+        }
+
+        .hero::before {
+            content: "REDLINE";
+            position: absolute;
+            right: -100px;
+            bottom: 0;
+            font-size: 180px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.025);
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--red);
+            border: 1px solid rgba(229,9,20,0.35);
+            background: rgba(229,9,20,0.07);
+            padding: 9px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+        }
+
+        .tag::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: var(--red);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--red);
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 7vw, 90px);
+            line-height: 0.95;
+            font-weight: 950;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 550px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 16px 28px;
+            border-radius: 7px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-red {
+            background: var(--red);
+            color: white;
+            box-shadow: 0 10px 30px rgba(229,9,20,0.2);
+        }
+
+        .btn-red:hover {
+            background: #ff1723;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(229,9,20,0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* =========================
+           MARQUEE
+        ========================= */
+
+        .marquee {
+            background: var(--red);
+            overflow: hidden;
+            padding: 13px 0;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: move 20s linear infinite;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .marquee-content span {
+            margin: 0 30px;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 45px;
+            gap: 30px;
+        }
+
+        .section-title small {
+            color: var(--red);
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+
+        .section-title h2 {
+            margin-top: 10px;
+            font-size: clamp(32px, 5vw, 55px);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .section-title p {
+            color: #888;
+            margin-top: 12px;
+            max-width: 550px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PRODUTOS
+        ========================= */
+
+        .products {
+            background:
+                radial-gradient(circle at 10% 20%, rgba(229,9,20,0.06), transparent 25%),
+                #0a0a0a;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #151515, #0d0d0d);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.35s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(229,9,20,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .product-image {
+            height: 260px;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.07);
+        }
+
+        .product-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--red);
+            padding: 6px 9px;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-category {
+            color: var(--red);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 {
+            margin: 9px 0;
+            font-size: 21px;
+        }
+
+        .product-description {
+            color: #888;
+            font-size: 13px;
+            line-height: 1.5;
+            min-height: 40px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 22px;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .add-cart {
+            border: none;
+            background: var(--red);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 19px;
+            transition: 0.3s;
+        }
+
+        .add-cart:hover {
+            background: white;
+            color: var(--red);
+            transform: scale(1.08);
+        }
+
+        /* =========================
+           DIFERENCIAIS
+        ========================= */
+
+        .features {
+            background: #050505;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            border: 1px solid var(--border);
+            background: #101010;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            border-color: rgba(229,9,20,0.4);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(229,9,20,0.1);
+            color: var(--red);
+            border-radius: 8px;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #777;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        .about {
+            background:
+                linear-gradient(90deg, #0b0b0b, #100000);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            text-transform: uppercase;
+            line-height: 1;
+            margin: 15px 0 25px;
+        }
+
+        .about h2 span {
+            color: var(--red);
+        }
+
+        .about p {
+            color: #999;
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            border-left: 3px solid var(--red);
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.025);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 27px;
+            margin-bottom: 5px;
+        }
+
+        .stat span {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .about-visual {
+            min-height: 450px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .engine-box {
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgba(229,9,20,0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow:
+                0 0 80px rgba(229,9,20,0.08),
+                inset 0 0 80px rgba(229,9,20,0.04);
+        }
+
+        .engine-box::before,
+        .engine-box::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(229,9,20,0.2);
+            border-radius: 50%;
+        }
+
+        .engine-box::before {
+            width: 250px;
+            height: 250px;
+        }
+
+        .engine-box::after {
+            width: 170px;
+            height: 170px;
+        }
+
+        .engine-text {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .engine-text strong {
+            display: block;
+            font-size: 65px;
+            color: var(--red);
+            font-style: italic;
+        }
+
+        .engine-text span {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #aaa;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 50px 7% 30px;
+            background: #030303;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: #666;
+            max-width: 350px;
+            margin-top: 15px;
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 18px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #777;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .footer-column a:hover {
+            color: var(--red);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--border);
+            padding-top: 25px;
+            color: #555;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* =========================
+           CARRINHO
+        ========================= */
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: min(450px, 100%);
+            background: #0d0d0d;
+            border-left: 1px solid rgba(229,9,20,0.3);
+            transform: translateX(100%);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-overlay.active .cart {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            height: 80px;
+            padding: 0 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-header h2 {
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .close-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .close-cart:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .empty-cart {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #666;
+            text-align: center;
+        }
+
+        .empty-cart-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 13px;
+            align-items: center;
+            background: #151515;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .cart-item h4 {
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .cart-item-price {
+            color: var(--red);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 8px;
+        }
+
+        .quantity button {
+            width: 23px;
+            height: 23px;
+            border: 1px solid #333;
+            background: #0b0b0b;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .quantity button:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .quantity span {
+            font-size: 12px;
+            min-width: 14px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: transparent;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .remove-item:hover {
+            color: var(--red);
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--border);
+            padding: 25px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .summary-line.total {
+            color: white;
+            font-size: 22px;
+            font-weight: 900;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 1px solid #222;
+        }
+
+        .summary-line.total span:last-child {
+            color: var(--red);
+        }
+
+        .checkout {
+            width: 100%;
+            margin-top: 18px;
+            border: none;
+            background: var(--red);
+            color: white;
+            padding: 17px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .checkout:hover {
+            background: white;
+            color: var(--red);
+        }
+
+        /* =========================
+           TOAST
+        ========================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #151515;
+            border-left: 4px solid var(--red);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 7px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+            z-index: 3000;
+            font-size: 13px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-visual {
+                min-height: 350px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            section {
+                padding: 75px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                display: block;
+            }
+
+            .section-header .btn {
+                margin-top: 20px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 35px;
+            }
+
+            .copyright {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .about-visual {
+                min-height: 300px;
+            }
+
+            .engine-box {
+                width: 270px;
+                height: 270px;
+            }
+
+            .engine-text strong {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <a href="#inicio" class="logo" style="text-decoration:none;color:white;">
+            <div class="logo-icon">R</div>
+
+            RED<span>LINE</span>
+        </a>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#produtos">Peças</a>
+            <a href="#diferenciais">Diferenciais</a>
+            <a href="#sobre">Sobre</a>
+        </nav>
+
+        <button class="cart-button" onclick="openCart()" aria-label="Abrir carrinho">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main id="inicio">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="tag">
+                    PERFORMANCE AUTOMOTIVA
+                </div>
+
+                <h1>
+                    POTÊNCIA<br>
+                    <span>SEM LIMITES.</span>
+                </h1>
+
+                <p>
+                    Peças automotivas selecionadas para quem não aceita
+                    qualquer coisa quando o assunto é desempenho,
+                    qualidade e estilo.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#produtos" class="btn btn-red">
+                        Ver peças
+                    </a>
+
+                    <a href="#sobre" class="btn btn-outline">
+                        Conheça a Redline
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MARQUEE
+        ========================== -->
+
+        <div class="marquee">
+
+            <div class="marquee-content">
+
+                <span>⚡ PERFORMANCE</span>
+                <span>● QUALIDADE</span>
+                <span>⚡ ALTA PERFORMANCE</span>
+                <span>● PEÇAS AUTOMOTIVAS</span>
+                <span>⚡ REDLINE PARTS</span>
+                <span>● PERFORMANCE</span>
+                <span>⚡ QUALIDADE</span>
+                <span>● ALTA PERFORMANCE</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PRODUTOS
+        ========================== -->
+
+        <section class="products" id="produtos">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <small>CATÁLOGO REDLINE</small>
+
+                    <h2>
+                        PEÇAS EM<br>
+                        DESTAQUE
+                    </h2>
+
+                    <p>
+                        Componentes para manutenção e performance
+                        automotiva. Escolha sua peça e adicione ao carrinho.
+                    </p>
+
+                </div>
+
+                <button class="btn btn-outline" onclick="openCart()">
+                    🛒 Ver carrinho
+                </button>
+
+            </div>
+
+
+            <div class="products-grid">
+
+                <!-- PRODUTO 1 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-number">
+                            01
+                        </span>
+
+                        <img
+                            src="IMG_6091.jpeg"
+                            alt="Motor Jetta"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Motor
+                        </span>
+
+                        <h3>
+                            Motor Jetta
+                        </h3>
+
+                        <p class="product-description">
+                            Motor automotivo para projeto Jetta,
+                            desenvolvido para entregar desempenho.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <strong class="price">
+                                R$ 8.990,00
+                            </strong>
+
+                            <button
+                                class="add-cart"
+                                onclick="addToCart(
+                                    1,
+                                    'Motor Jetta',
+                                    8990,
+                                    'IMG_6091.jpeg'
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUTO 2 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-number">
+                            02
+                        </span>
+
+                        <img
+                            src="IMG_6090.jpeg"
+                            alt="Turbo"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Performance
+                        </span>
+
+                        <h3>
+                            Turbo
+                        </h3>
+
+                        <p class="product-description">
+                            Turbo automotivo para projetos que
+                            buscam mais desempenho e pressão.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <strong class="price">
+                                R$ 3.490,00
+                            </strong>
+
+                            <button
+                                class="add-cart"
+                                onclick="addToCart(
+                                    2,
+                                    'Turbo',
+                                    3490,
+                                    'IMG_6090.jpeg'
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUTO 3 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-number">
+                            03
+                        </span>
+
+                        <img
+                            src="IMG_6088.jpeg"
+                            alt="Disco de freio"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Freios
+                        </span>
+
+                        <h3>
+                            Disco de Freio
+                        </h3>
+
+                        <p class="product-description">
+                            Disco de freio para oferecer segurança
+                            e excelente resposta de frenagem.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <strong class="price">
+                                R$ 780,00
+                            </strong>
+
+                            <button
+                                class="add-cart"
+                                onclick="addToCart(
+                                    3,
+                                    'Disco de Freio',
+                                    780,
+                                    'IMG_6088.jpeg'
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUTO 4 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-number">
+                            04
+                        </span>
+
+                        <img
+                            src="IMG_6089.jpeg"
+                            alt="Velas"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Ignição
+                        </span>
+
+                        <h3>
+                            Velas
+                        </h3>
+
+                        <p class="product-description">
+                            Velas automotivas para funcionamento
+                            eficiente e confiável do motor.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <strong class="price">
+                                R$ 320,00
+                            </strong>
+
+                            <button
+                                class="add-cart"
+                                onclick="addToCart(
+                                    4,
+                                    'Velas',
+                                    320,
+                                    'IMG_6089.jpeg'
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUTO 5 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-number">
+                            05
+                        </span>
+
+                        <img
+                            src="IMG_6092.jpeg"
+                            alt="Radiador"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Arrefecimento
+                        </span>
+
+                        <h3>
+                            Radiador
+                        </h3>
+
+                        <p class="product-description">
+                            Sistema de radiador para ajudar a manter
+                            a temperatura ideal do motor.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <strong class="price">
+                                R$ 1.250,00
+                            </strong>
+
+                            <button
+                                class="add-cart"
+                                onclick="addToCart(
+                                    5,
+                                    'Radiador',
+                                    1250,
+                                    'IMG_6092.jpeg'
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUTO 6 -->
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-number">
+                            06
+                        </span>
+
+                        <img
+                            src="IMG_6093.jpeg"
+                            alt="Velas de ignição"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Ignição
+                        </span>
+
+                        <h3>
+                            Velas de Ignição
+                        </h3>
+
+                        <p class="product-description">
+                            Velas de ignição para combustão eficiente
+                            e funcionamento preciso do motor.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <strong class="price">
+                                R$ 450,00
+                            </strong>
+
+                            <button
+                                class="add-cart"
+                                onclick="addToCart(
+                                    6,
+                                    'Velas de Ignição',
+                                    450,
+                                    'IMG_6093.jpeg'
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DIFERENCIAIS
+        ========================== -->
+
+        <section class="features" id="diferenciais">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <small>POR QUE REDLINE?</small>
+
+                    <h2>
+                        FEITA PARA<br>
+                        QUEM AMA CARRO
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚙
+                    </div>
+
+                    <h3>
+                        Peças selecionadas
+                    </h3>
+
+                    <p>
+                        Produtos escolhidos pensando em qualidade,
+                        desempenho e confiabilidade.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Performance
+                    </h3>
+
+                    <p>
+                        Componentes para quem quer aproveitar
+                        todo o potencial do seu projeto.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🛡️
+                    </div>
+
+                    <h3>
+                        Segurança
+                    </h3>
+
+                    <p>
+                        Itens automotivos pensados para contribuir
+                        com uma condução mais segura.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚗
+                    </div>
+
+                    <h3>
+                        Apaixonados por carros
+                    </h3>
+
+                    <p>
+                        Uma loja criada para quem realmente
+                        gosta do mundo automotivo.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SOBRE
+        ========================== -->
+
+        <section class="about" id="sobre">
+
+            <div class="about-content">
+
+                <div>
+
+                    <div class="section-title">
+
+                        <small>SOBRE A REDLINE</small>
+
+                        <h2>
+                            MAIS QUE<br>
+                            <span>PEÇAS.</span>
+                            PAIXÃO.
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        A REDLINE PARTS nasceu com uma ideia simples:
+                        transformar a compra de peças automotivas em
+                        uma experiência moderna, rápida e visualmente
+                        incrível.
+                    </p>
+
+                    <p>
+                        Aqui, performance encontra design.
+                        Cada componente representa uma parte daquilo
+                        que faz um carro ser muito mais do que apenas
+                        um meio de transporte.
+                    </p>
+
+                    <div class="stats">
+
+                        <div class="stat">
+                            <strong>06+</strong>
+                            <span>PEÇAS DISPONÍVEIS</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>100%</strong>
+                            <span>FOCO AUTOMOTIVO</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-visual">
+
+                    <div class="engine-box">
+
+                        <div class="engine-text">
+
+                            <strong>R</strong>
+
+                            <span>
+                                REDLINE PARTS
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <div class="logo-icon">
+                        R
+                    </div>
+
+                    RED<span>LINE</span>
+
+                </div>
+
+                <p>
+                    Performance, qualidade e estilo para
+                    projetos automotivos que não passam despercebidos.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+
+                    <h4>Navegação</h4>
+
+                    <a href="#inicio">
+                        Início
+                    </a>
+
+                    <a href="#produtos">
+                        Peças
+                    </a>
+
+                    <a href="#diferenciais">
+                        Diferenciais
+                    </a>
+
+                    <a href="#sobre">
+                        Sobre
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>Atendimento</h4>
+
+                    <a href="#">
+                        WhatsApp
+                    </a>
+
+                    <a href="#">
+                        Instagram
+                    </a>
+
+                    <a href="#">
+                        E-mail
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <span>
+                © 2026 REDLINE PARTS. Todos os direitos reservados.
+            </span>
+
+            <span>
+                PERFORMANCE • STYLE • POWER
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         CARRINHO
+    ========================== -->
+
+    <div class="cart-overlay" id="cartOverlay">
+
+        <div class="cart">
+
+            <div class="cart-header">
+
+                <h2>
+                    Seu carrinho
+                </h2>
+
+                <button
+                    class="close-cart"
+                    onclick="closeCart()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="cart-items"
+                id="cartItems"
+            ></div>
+
+
+            <div class="cart-footer">
+
+                <div class="summary-line">
+
+                    <span>
+                        Itens
+                    </span>
+
+                    <span id="itemsTotal">
+                        R$ 0,00
+                    </span>
+
+                </div>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Frete
+                    </span>
+
+                    <span>
+                        GRÁTIS
+                    </span>
+
+                </div>
+
+
+                <div class="summary-line total">
+
+                    <span>
+                        TOTAL
+                    </span>
+
+                    <span id="cartTotal">
+                        R$ 0,00
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="checkout"
+                    onclick="checkout()"
+                >
+                    Finalizar compra
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           CARRINHO
+        ========================== */
+
+        let cart = [];
+
+
+        function formatPrice(value) {
+
+            return value.toLocaleString(
+                "pt-BR",
+                {
+                    style: "currency",
+                    currency: "BRL"
+                }
+            );
+
+        }
+
+
+        function addToCart(
+            id,
+            name,
+            price,
+            image
+        ) {
+
+            const existingProduct =
+                cart.find(
+                    item => item.id === id
+                );
+
+
+            if (existingProduct) {
+
+                existingProduct.quantity++;
+
+            } else {
+
+                cart.push({
+
+                    id: id,
+
+                    name: name,
+
+                    price: price,
+
+                    image: image,
+
+                    quantity: 1
+
+                });
+
+            }
+
+
+            updateCart();
+
+            showToast(
+                name + " foi adicionado ao carrinho."
+            );
+
+        }
+
+
+        function removeFromCart(id) {
+
+            cart =
+                cart.filter(
+                    item => item.id !== id
+                );
+
+            updateCart();
+
+        }
+
+
+        function changeQuantity(
+            id,
+            amount
+        ) {
+
+            const item =
+                cart.find(
+                    product => product.id === id
+                );
+
+
+            if (!item) {
+                return;
+            }
+
+
+            item.quantity += amount;
+
+
+            if (item.quantity <= 0) {
+
+                removeFromCart(id);
+
+                return;
+
+            }
+
+
+            updateCart();
+
+        }
+
+
+        function updateCart() {
+
+            const cartItems =
+                document.getElementById(
+                    "cartItems"
+                );
+
+            const cartCount =
+                document.getElementById(
+                    "cartCount"
+                );
+
+            const itemsTotal =
+                document.getElementById(
+                    "itemsTotal"
+                );
+
+            const cartTotal =
+                document.getElementById(
+                    "cartTotal"
+                );
+
+
+            let totalItems = 0;
+
+            let totalPrice = 0;
+
+
+            cart.forEach(item => {
+
+                totalItems +=
+                    item.quantity;
+
+                totalPrice +=
+                    item.price *
+                    item.quantity;
+
+            });
+
+
+            cartCount.textContent =
+                totalItems;
+
+
+            itemsTotal.textContent =
+                formatPrice(totalPrice);
+
+
+            cartTotal.textContent =
+                formatPrice(totalPrice);
+
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+
+                    <div class="empty-cart">
+
+                        <div class="empty-cart-icon">
+                            🛒
+                        </div>
+
+                        <strong>
+                            Seu carrinho está vazio
+                        </strong>
+
+                        <p style="margin-top:8px;font-size:12px;">
+                            Adicione algumas peças para começar.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            cartItems.innerHTML =
+                cart.map(item => `
+
+                    <div class="cart-item">
+
+                        <img
+                            src="${item.image}"
+                            alt="${item.name}"
+                        >
+
+                        <div>
+
+                            <h4>
+                                ${item.name}
+                            </h4>
+
+                            <div class="cart-item-price">
+                                ${formatPrice(item.price)}
+                            </div>
+
+                            <div class="quantity">
+
+                                <button
+                                    onclick="changeQuantity(${item.id}, -1)"
+                                >
+                                    −
+                                </button>
+
+                                <span>
+                                    ${item.quantity}
+                                </span>
+
+                                <button
+                                    onclick="changeQuantity(${item.id}, 1)"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="remove-item"
+                            onclick="removeFromCart(${item.id})"
+                            title="Remover"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+                `).join("");
+
+        }
+
+
+        /* =========================
+           ABRIR / FECHAR CARRINHO
+        ========================== */
+
+        function openCart() {
+
+            document
+                .getElementById("cartOverlay")
+                .classList
+                .add("active");
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+        function closeCart() {
+
+            document
+                .getElementById("cartOverlay")
+                .classList
+                .remove("active");
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        document
+            .getElementById("cartOverlay")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+                        event.target ===
+                        this
+                    ) {
+
+                        closeCart();
+
+                    }
+
+                }
+            );
+
+
+        /* =========================
+           TOAST
+        ========================== */
+
+        function showToast(message) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+        /* =========================
+           FINALIZAR COMPRA
+        ========================== */
+
+        function checkout() {
+
+            if (cart.length === 0) {
+
+                showToast(
+                    "Seu carrinho está vazio."
+                );
+
+                return;
+
+            }
+
+
+            let total = 0;
+
+            cart.forEach(item => {
+
+                total +=
+                    item.price *
+                    item.quantity;
+
+            });
+
+
+            alert(
+                "PEDIDO REDLINE PARTS\n\n" +
+                "Total da compra: " +
+                formatPrice(total) +
+                "\n\n" +
+                "Obrigado pela preferência!"
+            );
+
+        }
+
+
+        /* =========================
+           INICIALIZAÇÃO
+        ========================== */
+
+        updateCart();
+
+    </script>
+
+</body>
+</html>
